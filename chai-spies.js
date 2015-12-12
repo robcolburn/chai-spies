@@ -301,7 +301,9 @@
             passed === calls.length
           , 'expected ' + this._obj + ' to have been always called with #{exp} but got ' + passed + ' out of ' + calls.length
           , 'expected ' + this._his + ' to have not always been called with #{exp}'
-          , args
+          , args.map(function(val) {
+            return typeof val === "string" ? val : JSON.stringify(val);
+          }).join(", ")
         );
       } else {
         passed = 0;
@@ -319,7 +321,9 @@
             passed > 0
           , 'expected ' + this._obj + ' to have been called with #{exp}'
           , 'expected ' + this._his + ' to have not been called with #{exp} but got ' + passed + ' times'
-          , args
+          , args.map(function(val) {
+            return typeof val === "string" ? val : JSON.stringify(val);
+          }).join(", ")
         );
       }
     }
